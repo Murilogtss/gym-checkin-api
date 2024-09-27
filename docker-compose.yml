@@ -1,0 +1,10 @@
+version: '3'
+services:
+  api-gym-checkin:
+    image: bitnami/postgresql
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USERNAME=docker
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DATABASE=gym_checkin
