@@ -23,7 +23,7 @@ export async function register(req: FastifyRequest, rep: FastifyReply) {
       })
     }
     // TODO: FIX Posible future error cases
-    return rep.status(500).send()
+    throw error
   }
 
   return rep.status(201).send()
