@@ -1,10 +1,13 @@
 {
   "name": "gym-checkin-api",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "start": "node build/server.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "build": "tsup src --out-dir build"
   },
   "keywords": [],
@@ -19,7 +22,9 @@
     "prisma": "5.20.0",
     "tsup": "8.3.0",
     "tsx": "4.19.1",
-    "typescript": "5.6.2"
+    "typescript": "5.6.2",
+    "vite-tsconfig-paths": "5.0.1",
+    "vitest": "2.1.1"
   },
   "dependencies": {
     "@prisma/client": "5.20.0",

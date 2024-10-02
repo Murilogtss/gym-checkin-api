@@ -8,20 +8,20 @@ export const app = fastify()
 app.register(appRoutes)
 
 app.setErrorHandler((error, _, reply) => {
-  if(error instanceof ZodError) {
+  if (error instanceof ZodError) {
     return reply.status(400).send({
       message: 'Validation error.',
-      issues: error.format()
+      issues: error.format(),
     })
   }
 
-  if(env.NODE_ENV !== 'production') {
+  if (env.NODE_ENV !== 'production') {
     console.error(error)
   } else {
     // TODO: Here we should log to an external tool like DataDog/Sentry
   }
 
   return reply.status(500).send({
-    message: 'Internal server error.'
+    message: 'Internal server error.',
   })
 })
