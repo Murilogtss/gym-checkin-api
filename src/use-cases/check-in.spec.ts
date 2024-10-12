@@ -44,6 +44,28 @@ describe('CheckIn Use Case', () => {
     expect(checkIn.id).toEqual(expect.any(String))
   })
 
+  it('should not be able to check in on distant gym', async () => {
+    vi.setSystemTime(new Date(2024, 7, 10, 12, 0, 0))
+
+    gymRepository.items.push({
+      id: 'gym-02',
+      title: 'JS Gym',
+      description: '',
+      phone: '',
+      latitude: new Decimal(-23.5265438),
+      longitude: new Decimal(-46.347158),
+    })
+
+    await expect(
+      sut.execute({
+        userId: 'user-01',
+        gymId: 'gym-02',
+        userLatitude: -23.5359602,
+        userLongitude: -46.3528733,
+      }),
+    ).rejects.toBeInstanceOf(Error)
+  })
+
   it('should not be able to check in twice in the same day', async () => {
     vi.setSystemTime(new Date(2024, 7, 10, 12, 0, 0))
 
